@@ -1,0 +1,24 @@
+﻿using GIT;
+
+GITUser user1 = new("Shira");
+user1.AddBranch("DesignPatterns");
+user1.GetBranch("DesignPatterns").AddFile("firstFile", "this is my content");
+user1.GetBranch("DesignPatterns").AddFolder("firstFolder");
+user1.GetBranch("DesignPatterns").AddBranch("SecondBranch");
+user1.GetBranch("SecondBranch").AddFolder("firstSecondaryFolder");
+user1.GetBranch("SecondBranch").GetFolder("firstSecondaryFolder").AddFile("FirstThirdFile");
+user1.GetBranch("SecondBranch").AddFile("firstSecondaryFile", "Miriam's text");
+user1.print();
+user1.GetBranch("DesignPatterns").Clone("copyOfDesignPatterns");
+user1.GetBranch("SecondBranch").GetFile("FirstThirdFile").SetContent("bla bla. I only wanted to check my merge");
+user1.GetBranch("SecondBranch").Add();
+user1.GetBranch("SecondBranch").Commit();
+Console.WriteLine("-------after changing-------");
+user1.print();
+user1.GetBranch("SecondBranch").Pull();
+user1.GetBranch("SecondBranch").Push();
+Console.WriteLine("-------after merging-------");
+user1.print();
+user1.GetBranch("DesignPatterns").Undo();
+Console.WriteLine("-------after undoing-------");
+user1.print();
